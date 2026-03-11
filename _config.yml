@@ -1,0 +1,26 @@
+title: "Femmes et terrains"
+description: "Vers la création d'outils méthodologiques"
+lang: fr
+url: ""
+baseurl: ""
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  auto_ids: true
+  toc_levels: "2..3"
+  hard_wrap: false
+
+sass:
+  style: compressed
+  sass_dir: _sass
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - _content
+  - README.md
+  - vendor
+
+plugins:
+  - jekyll-seo-tag

@@ -1,0 +1,213 @@
+@media print {
+  @page {
+    size: A4;
+    margin: 1.5cm 2cm;
+  }
+
+  body {
+    font-size: 10pt;
+    line-height: 1.5;
+    color: #000;
+    background: #fff;
+  }
+
+  .site-header,
+  .sidebar,
+  .export-bar,
+  .site-footer,
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .site-wrapper,
+  .guide-layout,
+  .guide-content {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 20pt;
+    text-align: center;
+    margin-bottom: 0.5cm;
+    padding-bottom: 0.3cm;
+    border-bottom: 2pt solid #000;
+  }
+
+  h2 {
+    font-size: 14pt;
+    page-break-before: always;
+    page-break-after: avoid;
+    border-bottom: 1.5pt solid #333;
+    margin-top: 0;
+    padding: 0.3cm 0.5cm;
+    background: #f0f0f0 !important;
+  }
+
+  // First h2 shouldn't break
+  h1 + h2,
+  .guide-content > h2:first-of-type {
+    page-break-before: avoid;
+  }
+
+  h3 {
+    font-size: 11pt;
+    page-break-after: avoid;
+    color: #333;
+    margin-top: 0.5cm;
+    margin-bottom: 0.2cm;
+    border-bottom: 0.5pt solid #ccc;
+    padding-bottom: 0.1cm;
+  }
+
+  h4 {
+    font-size: 10pt;
+    page-break-after: avoid;
+  }
+
+  p, li, blockquote {
+    orphans: 3;
+    widows: 3;
+  }
+
+  // --- Form tables: writable cells with generous height ---
+  table {
+    font-size: 8.5pt;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.3cm 0;
+  }
+
+  th, td {
+    border: 0.5pt solid #999;
+    padding: 4pt 6pt;
+    vertical-align: top;
+  }
+
+  th {
+    background: #e8e8e8 !important;
+    font-weight: 700;
+    text-align: left;
+    font-size: 8pt;
+  }
+
+  // --- Form lines (underscores for writing) ---
+  .form-line {
+    margin: 0.15cm 0;
+    line-height: 1.8;
+    color: #999;
+    font-size: 9pt;
+  }
+
+  // --- Form headers (Nom, Date fields) ---
+  .form-header {
+    margin: 0.3cm 0 0.5cm;
+    padding: 0.2cm 0.4cm;
+    background: #f5f5f5 !important;
+    border: 0.5pt solid #ccc;
+    font-size: 10pt;
+    line-height: 2;
+  }
+
+  // --- Form section titles ---
+  .form-section-title {
+    font-size: 10pt !important;
+    color: #333;
+    margin-top: 0.4cm;
+    margin-bottom: 0.15cm;
+    border-bottom: none !important;
+  }
+
+  // --- Form questions (label + examples) ---
+  .form-question {
+    margin-top: 0.3cm;
+    margin-bottom: 0.05cm;
+    font-size: 9.5pt;
+    line-height: 1.4;
+
+    em {
+      font-size: 8pt;
+      color: #666;
+    }
+  }
+
+  // --- Form hints (example text) ---
+  .form-hint {
+    font-size: 7.5pt;
+    color: #888;
+    margin-top: 0.1cm;
+    font-style: italic;
+  }
+
+  // --- Checklists: print-friendly boxes ---
+  ul.task-list {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .task-list-item,
+  li:has(input[type="checkbox"]) {
+    margin-bottom: 0.15cm;
+    line-height: 1.8;
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 12pt;
+    height: 12pt;
+    border: 1pt solid #333;
+    border-radius: 2pt;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6pt;
+    background: #fff;
+  }
+
+  // --- Blockquote alerts ---
+  blockquote {
+    border-left: 2pt solid #333;
+    background: #f5f5f5 !important;
+    padding: 0.2cm 0.5cm;
+    margin: 0.3cm 0;
+    font-size: 9pt;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " [" attr(href) "]";
+    font-size: 7pt;
+    color: #666;
+    word-break: break-all;
+  }
+
+  a[href^="#"]::after {
+    content: none;
+  }
+
+  ul, ol {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  // --- Keep outil sections visually distinct ---
+  h2[id^="outil-"] {
+    background: #e8e8e8 !important;
+    padding: 0.3cm 0.5cm;
+    border: 1pt solid #999;
+    border-bottom: 2pt solid #333;
+    margin-left: 0;
+    margin-right: 0;
+    border-radius: 0;
+  }
+}

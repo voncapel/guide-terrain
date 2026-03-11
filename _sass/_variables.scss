@@ -1,0 +1,95 @@
+// Transitions
+$theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Layout & Spacing
+$sidebar-width: 280px;
+$content-max: 760px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 840px;
+$breakpoint-lg: 1120px;
+
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 1.5rem;
+$space-xl: 2.5rem;
+$space-2xl: 4rem;
+
+// Fonts
+$font-body: 'PT Sans', system-ui, -apple-system, sans-serif;
+$font-heading: 'Domine', serif;
+
+:root {
+  // Light Theme (Earth palette)
+  --bg-primary: #FAF7F2;
+  --bg-secondary: #F5EDE3;
+  --bg-tertiary: #EDE5DA;
+  --text-primary: #2C2420;
+  --text-secondary: #5A4D45;
+  --text-muted: #8E7C71;
+  --heading: #3B2F2A;
+  
+  --accent: #C05746;       // terracotta
+  --accent-light: #E8D5CF;
+  --accent-hover: #A04738;
+  
+  --ochre: #B8860B;
+  --sage: #7A8B6F;
+  --sage-light: #E8EDE4;
+  --clay: #D4C4B0;
+  --clay-light: #EDE5DA;
+  
+  --red: #A63D40;          // ligne rouge
+  --red-light: #F2E0E0;
+  
+  --border-color: #D4C4B0;
+  --shadow-color: rgba(44, 36, 32, 0.05);
+  --header-bg: rgba(250, 247, 242, 0.95);
+  --sidebar-bg: #FAF7F2;
+  
+  --nav-link-hover: #C05746;
+  --nav-link-active: #C05746;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1A1614;
+  --bg-secondary: #251F1C;
+  --bg-tertiary: #2F2825;
+  --text-primary: #E6DFD9;
+  --text-secondary: #BDAFA5;
+  --text-muted: #8E7C71;
+  --heading: #F5EDE3;
+  
+  --accent: #D67464;
+  --accent-light: #4A342E;
+  --accent-hover: #E88B7D;
+  
+  --ochre: #DAA520;
+  --sage: #9AB08F;
+  --sage-light: #2D3429;
+  --clay: #4A3F3A;
+  --clay-light: #2F2825;
+  
+  --red: #E05D61;
+  --red-light: #4A282A;
+  
+  --border-color: #3B2F2A;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --header-bg: rgba(26, 22, 20, 0.95);
+  --sidebar-bg: #1A1614;
+  
+  --nav-link-hover: #D67464;
+  --nav-link-active: #D67464;
+}
+
+// Keep some SCSS variables for legacy/convenience if needed, but pointed to CSS vars
+$bg: var(--bg-primary);
+$bg-warm: var(--bg-secondary);
+$text: var(--text-primary);
+$text-light: var(--text-secondary);
+$heading: var(--heading);
+$accent: var(--accent);
+$accent-light: var(--accent-light);
+$clay: var(--clay);
+$red: var(--red);
+$red-light: var(--red-light);

@@ -1,0 +1,358 @@
+// Blockquotes / Callouts
+blockquote {
+  background: var(--bg-secondary);
+  border-left: 4px solid var(--sage);
+  padding: $space-md $space-lg;
+  margin: $space-lg 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: var(--text-secondary);
+  transition: $theme-transition;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Exergue / important callout
+.callout-important,
+blockquote blockquote {
+  background: var(--red-light);
+  border-left-color: var(--red);
+  font-style: normal;
+  font-weight: 400;
+  color: var(--text-primary);
+}
+
+// Tables
+.table-wrapper {
+  overflow-x: auto;
+  margin: $space-lg 0;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  transition: $theme-transition;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+thead {
+  background: var(--bg-tertiary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+th {
+  font-family: $font-heading;
+  font-weight: 700;
+  text-align: left;
+  padding: $space-md;
+  color: var(--heading);
+  font-size: 0.9rem;
+}
+
+td {
+  padding: $space-md;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: top;
+  color: var(--text-primary);
+}
+
+tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--bg-secondary);
+}
+
+tbody tr:hover {
+  background: var(--bg-tertiary);
+}
+
+// Lists
+ul, ol {
+  margin: $space-md 0 $space-md $space-lg;
+  padding-left: $space-md;
+}
+
+li {
+  margin-bottom: $space-sm;
+  color: var(--text-primary);
+
+  &::marker {
+    color: var(--accent);
+  }
+}
+
+// Checklists
+li input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--sage);
+  border-radius: 4px;
+  vertical-align: middle;
+  margin-right: $space-sm;
+  position: relative;
+  cursor: pointer;
+  background: var(--bg-primary);
+  transition: $theme-transition;
+
+  &:checked {
+    background: var(--sage);
+    border-color: var(--sage);
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  }
+  
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+// Task lists (kramdown)
+ul.task-list {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.task-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-sm;
+}
+
+// Export buttons
+.export-bar {
+  display: flex;
+  gap: $space-sm;
+  justify-content: flex-end;
+  margin-bottom: $space-xl;
+  padding-bottom: $space-md;
+  border-bottom: 1px solid var(--border-color);
+  
+  @media (max-width: $breakpoint-md) {
+    justify-content: center;
+    margin-bottom: $space-lg;
+  }
+}
+
+.export-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-xs;
+  padding: 8px 16px;
+  font-family: $font-body;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: $theme-transition;
+
+  &:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--text-muted);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px var(--shadow-color);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+
+  svg {
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+}
+
+// Section markers (visual rhythm)
+h2 + blockquote {
+  margin-top: $space-sm;
+  background: var(--accent-light);
+  border-left-color: var(--accent);
+  color: var(--text-primary);
+}
+
+// "Outil" sections visual distinction
+h2[id^="outil-"] {
+  background: var(--bg-secondary);
+  padding: $space-md $space-lg;
+  margin-left: -$space-lg;
+  margin-right: -$space-lg;
+  border-bottom: 3px solid var(--accent);
+  border-radius: 8px 8px 0 0;
+  transition: $theme-transition;
+
+  @media (max-width: $breakpoint-md) {
+    margin-left: -$space-md;
+    margin-right: -$space-md;
+    padding: $space-md;
+    border-radius: 0;
+    font-size: 1.2rem;
+  }
+
+  @media (max-width: $breakpoint-sm) {
+    margin-left: -$space-sm;
+    margin-right: -$space-sm;
+    padding: $space-sm $space-md;
+    font-size: 1.05rem;
+  }
+}
+
+// --- Form elements for Outils (printable/exportable) ---
+
+// Form header: Nom / Date fields
+.form-header {
+  margin: $space-lg 0;
+  padding: $space-md $space-lg;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  line-height: 2.2;
+  transition: $theme-transition;
+}
+
+// Form section titles
+.form-section-title {
+  color: var(--heading);
+  font-size: 1.05rem;
+  margin-top: $space-lg;
+  margin-bottom: $space-sm;
+  border-bottom: 1px dashed var(--border-color);
+  padding-bottom: $space-xs;
+}
+
+// Form lines (writable underscores)
+.form-line {
+  margin: $space-xs 0;
+  line-height: 2;
+  color: var(--text-muted);
+  letter-spacing: -0.5px;
+}
+
+// Form question (bold label + italic examples)
+.form-question {
+  margin-top: $space-md;
+  margin-bottom: $space-xs;
+  line-height: 1.6;
+
+  strong {
+    color: var(--heading);
+  }
+
+  em {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+}
+
+// Form hint text
+.form-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: $space-xs;
+  font-style: italic;
+}
+
+// --- Mobile responsive: components ---
+@media (max-width: $breakpoint-md) {
+  table {
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  th, td {
+    padding: $space-sm;
+    min-width: 100px;
+  }
+
+  .export-bar {
+    margin-bottom: $space-md;
+    padding-bottom: $space-sm;
+  }
+
+  .form-header {
+    padding: $space-sm $space-md;
+    font-size: 0.9rem;
+    line-height: 2;
+    word-break: break-word;
+  }
+
+  .form-question {
+    font-size: 0.95rem;
+
+    em {
+      font-size: 0.8rem;
+      display: block;
+      margin-top: 2px;
+    }
+  }
+
+  .form-line {
+    font-size: 0.85rem;
+    overflow-x: auto;
+    word-break: break-all;
+  }
+
+  blockquote {
+    padding: $space-sm $space-md;
+    margin: $space-md 0;
+  }
+
+  ul, ol {
+    margin-left: $space-md;
+    padding-left: $space-sm;
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .export-btn {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+
+  .form-header {
+    padding: $space-sm;
+    font-size: 0.85rem;
+  }
+
+  .form-section-title {
+    font-size: 0.95rem;
+  }
+
+  li input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// Red-lined text for "Ligne rouge"
+.red-line {
+  color: var(--red);
+  font-weight: 700;
+}

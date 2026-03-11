@@ -1,0 +1,133 @@
+.sidebar {
+  width: $sidebar-width;
+  flex-shrink: 0;
+  position: sticky;
+  top: 100px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding: $space-md 0;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-color) transparent;
+  transition: $theme-transition;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+  }
+
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $space-md;
+  padding: 0 $space-sm;
+}
+
+.sidebar-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin: 0;
+  padding: 0;
+  font-weight: 700;
+  border: none;
+}
+
+.sidebar-close {
+  display: none;
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  line-height: 0;
+  transition: $theme-transition;
+
+  &:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  @media (max-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: 2px;
+  
+  &[data-section="guide"], &[data-section="outils"] {
+    display: none; // Hidden by default, shown by active tab
+  }
+  
+  body[data-active-tab="guide"] &[data-section="guide"] {
+    display: block;
+  }
+  
+  body[data-active-tab="outils"] &[data-section="outils"] {
+    display: block;
+  }
+  
+  // Always show if no section is defined (general items)
+  &:not([data-section]) {
+    display: block;
+  }
+}
+
+.nav-link {
+  display: block;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  border-radius: 0 6px 6px 0;
+  transition: $theme-transition;
+  line-height: 1.4;
+
+  &:hover {
+    color: var(--text-primary);
+    background: var(--bg-secondary);
+    border-left-color: var(--clay);
+  }
+
+  &.active {
+    color: var(--accent);
+    background: var(--accent-light);
+    border-left-color: var(--accent);
+    font-weight: 700;
+  }
+}
+
+.nav-link--sub {
+  font-size: 0.85rem;
+  padding-left: $space-xl;
+  color: var(--text-muted);
+  
+  &:hover {
+    color: var(--text-secondary);
+  }
+}
+
+.nav-sublist {
+  list-style: none;
+  margin-top: 2px;
+  margin-bottom: 8px;
+}
+
+.nav-subitem {
+  margin-bottom: 1px;
+}

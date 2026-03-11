@@ -1,0 +1,26 @@
+<aside class="sidebar" id="sidebar">
+  <nav class="sidebar-nav" aria-label="Table des matières">
+    <div class="sidebar-header">
+      <h2 class="sidebar-title">Sommaire</h2>
+      <button class="sidebar-close" aria-label="Fermer le menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <ul class="nav-list">
+      {% for item in site.data.navigation %}
+      <li class="nav-item" {% if item.section %}data-section="{{ item.section }}"{% endif %}>
+        <a href="#{{ item.id }}" class="nav-link">{{ item.title }}</a>
+        {% if item.children %}
+        <ul class="nav-sublist">
+          {% for child in item.children %}
+          <li class="nav-subitem">
+            <a href="#{{ child.id }}" class="nav-link nav-link--sub">{{ child.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </nav>
+</aside>

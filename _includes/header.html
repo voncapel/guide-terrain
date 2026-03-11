@@ -1,0 +1,33 @@
+<header class="site-header">
+  <div class="header-inner">
+    <div class="header-title">
+      <a href="{{ '/' | relative_url }}" style="text-decoration: none;">
+        <h1 class="site-title">{{ site.title }}</h1>
+        <p class="site-subtitle">{{ site.description }}</p>
+      </a>
+    </div>
+
+    <nav class="header-nav">
+      <div class="tab-nav" role="tablist">
+        <a href="{{ '/' | relative_url }}" class="tab-link {% if page.url == '/' %}active{% endif %}" data-tab="guide">Le Guide</a>
+        <a href="{{ '/outils/' | relative_url }}" class="tab-link {% if page.url contains '/outils/' %}active{% endif %}" data-tab="outils">Les Outils</a>
+      </div>
+      
+      <button class="theme-toggle-text" id="theme-toggle" aria-label="Changer le thème">
+        <span class="theme-text-light">Thème sombre</span>
+        <span class="theme-text-dark" style="display: none;">Thème clair</span>
+      </button>
+    </nav>
+
+    <div class="mobile-actions" style="display: flex; gap: 8px; align-items: center;">
+      <button class="theme-toggle-text mobile-only" id="theme-toggle-mobile" aria-label="Changer le thème">
+        <span class="theme-text-light">Sombre</span>
+        <span class="theme-text-dark" style="display: none;">Clair</span>
+      </button>
+      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="sidebar-overlay"></div>
