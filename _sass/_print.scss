@@ -1,14 +1,96 @@
+// Print-only cover and TOC: hidden on screen, shown when printing
+.print-cover,
+.print-toc {
+  display: none;
+}
+
 @media print {
   @page {
     size: A4;
-    margin: 1.5cm 2cm;
+    margin: 2cm 2cm 2.5cm; // Generous elegant margins
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  .print-cover {
+    display: flex;
+    min-height: 22cm;
+    align-items: center;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .print-cover h1 {
+    width: 100%;
+    margin: 0;
+  }
+
+  .guide-content > h1:first-of-type {
+    display: none;
+  }
+
+  .print-toc {
+    display: block;
+    page-break-after: always;
+    break-after: page;
+
+    .print-toc-title {
+      font-family: $font-heading;
+      font-size: 28pt;
+      font-weight: 600;
+      text-align: left;
+      margin: 1cm 0 1.5cm;
+      padding-bottom: 0.5cm;
+      border-bottom: 1px solid #000;
+      color: #000;
+    }
+
+    ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .print-toc-item {
+      font-size: 12pt;
+      font-weight: 600;
+      margin: 0.5cm 0 0;
+      page-break-inside: avoid;
+      font-family: $font-body;
+
+      > a {
+        color: #000;
+        text-decoration: none;
+      }
+    }
+
+    .print-toc-sublist {
+      margin: 0.2cm 0 0 1cm;
+    }
+
+    .print-toc-subitem {
+      font-size: 10.5pt;
+      font-weight: 400;
+      margin: 0.15cm 0;
+
+      a {
+        color: #333;
+        text-decoration: none;
+      }
+    }
+
+    a::after { content: none !important; }
   }
 
   body {
-    font-size: 10pt;
-    line-height: 1.5;
+    font-family: $font-body;
+    font-size: 10.5pt;
+    line-height: 1.6;
     color: #000;
-    background: #fff;
+    background: #fff !important;
   }
 
   .site-header,
@@ -25,24 +107,43 @@
     max-width: 100%;
     padding: 0;
     margin: 0;
+    overflow: visible !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: #fff !important;
+  }
+
+  body::before,
+  .guide-content::before,
+  .guide-content::after,
+  .content-header-image {
+    display: none !important;
   }
 
   h1 {
-    font-size: 20pt;
-    text-align: center;
-    margin-bottom: 0.5cm;
-    padding-bottom: 0.3cm;
-    border-bottom: 2pt solid #000;
+    font-family: $font-heading;
+    font-size: 32pt;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 1cm;
+    padding-bottom: 0.5cm;
+    border-bottom: 1px solid #000;
+    letter-spacing: -0.02em;
+    color: #000;
   }
 
   h2 {
-    font-size: 14pt;
+    font-family: $font-heading;
+    font-size: 18pt;
+    font-weight: 600;
     page-break-before: always;
     page-break-after: avoid;
-    border-bottom: 1.5pt solid #333;
+    border: none;
+    border-bottom: 1px solid #e0e0e0;
     margin-top: 0;
-    padding: 0.3cm 0.5cm;
-    background: #f0f0f0 !important;
+    padding: 0.5cm 0 0.3cm 0;
+    background: transparent !important;
+    color: #000;
   }
 
   // First h2 shouldn't break
@@ -52,92 +153,329 @@
   }
 
   h3 {
-    font-size: 11pt;
+    font-family: $font-body;
+    font-size: 13pt;
+    font-weight: 600;
     page-break-after: avoid;
-    color: #333;
-    margin-top: 0.5cm;
-    margin-bottom: 0.2cm;
-    border-bottom: 0.5pt solid #ccc;
-    padding-bottom: 0.1cm;
+    color: #111;
+    margin-top: 0.8cm;
+    margin-bottom: 0.3cm;
+    border: none;
+    padding: 0;
   }
 
   h4 {
-    font-size: 10pt;
+    font-family: $font-body;
+    font-size: 11pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #444;
     page-break-after: avoid;
+    margin-top: 0.6cm;
+    margin-bottom: 0.2cm;
   }
 
   p, li, blockquote {
     orphans: 3;
     widows: 3;
+    color: #111;
+  }
+
+  strong {
+    color: #000 !important;
+    font-weight: 600;
   }
 
   // --- Form tables: writable cells with generous height ---
   table {
-    font-size: 8.5pt;
+    font-size: 9.5pt;
     width: 100%;
     border-collapse: collapse;
-    margin: 0.3cm 0;
+    margin: 0.5cm 0;
+    border: 1px solid #000;
   }
 
   th, td {
-    border: 0.5pt solid #999;
-    padding: 4pt 6pt;
+    border: 1px solid #000;
+    padding: 6pt 8pt;
     vertical-align: top;
   }
 
   th {
-    background: #e8e8e8 !important;
-    font-weight: 700;
+    background: #f9f9f9 !important;
+    font-weight: 600;
     text-align: left;
-    font-size: 8pt;
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
 
-  // --- Form lines (underscores for writing) ---
+  // --- Form fills and writable areas ---
+  .form-fill {
+    --fill-ch: 24;
+    --form-line-color: #999;
+    display: inline-block;
+    width: min(100%, max(2.8cm, calc(var(--fill-ch) * 0.56ch)));
+    min-width: 2.8cm;
+    height: 10pt;
+    margin: 0 4pt;
+    vertical-align: -1pt;
+    border-bottom: 1px solid var(--form-line-color);
+  }
+
   .form-line {
-    margin: 0.15cm 0;
+    margin: 0.2cm 0;
     line-height: 1.8;
-    color: #999;
-    font-size: 9pt;
+    font-size: 10pt;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 4pt;
+  }
+
+  .form-line .form-fill,
+  .form-line .form-fill--stretch {
+    width: auto;
+    min-width: 5cm;
+    max-width: none;
+    flex: 1 1 7cm;
+    margin: 0;
+  }
+
+  .form-lines {
+    --form-lines: 3;
+    --form-line-gap: 0.8cm;
+    --form-line-color: #ccc;
+    width: 100%;
+    min-height: calc(var(--form-lines) * var(--form-line-gap));
+    margin: 0.3cm 0 0.5cm;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--form-line-gap) - 1px),
+      var(--form-line-color) calc(var(--form-line-gap) - 1px),
+      var(--form-line-color) var(--form-line-gap)
+    );
+    background-repeat: repeat-y;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .form-lines-below .form-line {
+    display: block;
+    margin: 0.2cm 0;
+  }
+
+  .form-lines-below .form-line .form-fill,
+  .form-lines-below .form-line .form-fill--stretch {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: 12pt;
+    margin-top: 2pt;
   }
 
   // --- Form headers (Nom, Date fields) ---
   .form-header {
-    margin: 0.3cm 0 0.5cm;
-    padding: 0.2cm 0.4cm;
-    background: #f5f5f5 !important;
-    border: 0.5pt solid #ccc;
-    font-size: 10pt;
-    line-height: 2;
+    margin: 0.4cm 0 0.6cm;
+    padding: 0.4cm 0.6cm;
+    background: transparent !important;
+    border: 1px solid #000;
+    font-size: 11pt;
+    line-height: 1.8;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.25cm 0.45cm;
+  }
+
+  .form-field-inline {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: end;
+    flex: 1 1 4.8cm;
+    min-width: 0;
+    gap: 4pt;
+    white-space: normal;
+  }
+
+  .form-field-inline .form-fill {
+    width: auto;
+    min-width: 0;
+    margin-right: 0;
   }
 
   // --- Form section titles ---
   .form-section-title {
-    font-size: 10pt !important;
-    color: #333;
-    margin-top: 0.4cm;
-    margin-bottom: 0.15cm;
-    border-bottom: none !important;
+    font-size: 11pt !important;
+    font-weight: 600;
+    color: #000;
+    margin-top: 0.35cm;
+    margin-bottom: 0.2cm;
+  }
+
+  .tool-2-compact .form-section-title {
+    margin-top: 0.22cm;
+    margin-bottom: 0.12cm;
+  }
+
+  .tool-2-compact .form-lines {
+    --form-line-gap: 0.62cm;
+    margin: 0.12cm 0 0.25cm;
+  }
+
+  .tool-2-compact p,
+  .tool-2-compact .form-line {
+    margin-bottom: 0.08cm;
   }
 
   // --- Form questions (label + examples) ---
   .form-question {
-    margin-top: 0.3cm;
-    margin-bottom: 0.05cm;
-    font-size: 9.5pt;
-    line-height: 1.4;
+    margin-top: 0.22cm;
+    margin-bottom: 0.1cm;
+    font-size: 10.5pt;
+    line-height: 1.5;
 
     em {
-      font-size: 8pt;
-      color: #666;
+      font-size: 9pt;
+      color: #555;
     }
   }
 
   // --- Form hints (example text) ---
   .form-hint {
-    font-size: 7.5pt;
-    color: #888;
+    font-size: 8.5pt;
+    color: #666;
     margin-top: 0.1cm;
     font-style: italic;
+  }
+
+  // --- Signaux d'alerte : version print structurée ---
+  .signals-disclaimer,
+  .signals-actions {
+    margin: 0.4cm 0;
+    padding: 0.4cm 0.5cm;
+    border: 1px solid #000;
+    background: transparent !important;
+    font-size: 10pt;
+    line-height: 1.5;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .signals-actions {
+    border-left: 3px solid #000;
+  }
+
+  .signals-tool {
+    margin: 0.4cm 0 0.5cm;
+  }
+
+  .signals-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.7cm minmax(0, 1fr);
+    column-gap: 0.25cm;
+    margin: 0.4cm 0;
+    padding: 0.4cm 0.5cm;
+    border: 1px solid #e0e0e0;
+    border-left: 2px solid #000;
+    border-radius: 0;
+    background: #f7f7f7 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .signals-stage::before {
+    position: static;
+    grid-column: 1;
+    grid-row: 1;
+    width: 0.7cm;
+    height: 0.7cm;
+    border: 1px solid #000;
+    border-radius: 50%;
+    background: #fff !important;
+    color: #000;
+    font-family: $font-heading;
+    font-size: 11pt;
+    font-weight: 600;
+    line-height: 0.65cm;
+    text-align: center;
+  }
+
+  .signals-stage > * {
+    grid-column: 1 / -1;
+  }
+
+  .signals-stage > .signals-stage-title {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .signals-stage--1::before { content: "I"; }
+  .signals-stage--2::before { content: "II"; }
+  .signals-stage--3::before { content: "III"; }
+
+  .signals-stage-title {
+    margin: 0 0 0.2cm;
+    border: 0;
+    padding: 0;
+    color: #000;
+    font-size: 12pt;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .signals-stage-title span {
+    color: #555;
+    font-size: 9.5pt;
+    font-weight: 400;
+    font-family: $font-body;
+  }
+
+  .signals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 0.2cm;
+    border: 1px solid #e0e0e0;
+    background: #fff !important;
+  }
+
+  .signals-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0.3cm 0.4cm;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    min-height: 100%;
+  }
+
+  .signals-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .signals-card:nth-last-child(-n + 2) {
+    border-bottom: none;
+  }
+
+  .signals-card-title {
+    margin: 0 0 0.15cm;
+    font-size: 10pt;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  .signals-list {
+    margin: 0;
+    padding-left: 0.5cm;
+  }
+
+  .signals-list li {
+    margin-bottom: 0.1cm;
+    line-height: 1.5;
   }
 
   // --- Checklists: print-friendly boxes ---
@@ -149,65 +487,137 @@
 
   .task-list-item,
   li:has(input[type="checkbox"]) {
-    margin-bottom: 0.15cm;
-    line-height: 1.8;
+    margin-bottom: 0.2cm;
+    line-height: 1.6;
   }
 
   input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 12pt;
-    height: 12pt;
-    border: 1pt solid #333;
-    border-radius: 2pt;
+    inline-size: 12pt;
+    block-size: 12pt;
+    min-inline-size: 12pt;
+    min-block-size: 12pt;
+    flex: 0 0 12pt;
+    aspect-ratio: 1 / 1;
+    align-self: flex-start;
+    border: 1px solid #000;
+    border-radius: 0;
     display: inline-block;
     vertical-align: middle;
-    margin-right: 6pt;
+    margin-right: 8pt;
     background: #fff;
   }
 
   // --- Blockquote alerts ---
   blockquote {
-    border-left: 2pt solid #333;
-    background: #f5f5f5 !important;
-    padding: 0.2cm 0.5cm;
-    margin: 0.3cm 0;
-    font-size: 9pt;
+    border: none;
+    border-left: 2px solid #000;
+    background: #fcfcfc !important;
+    padding: 0.3cm 0.5cm;
+    margin: 0.4cm 0;
+    font-size: 10.5pt;
+    font-style: italic;
+    font-family: $font-heading;
+  }
+
+  blockquote,
+  .signals-stage,
+  .signals-disclaimer,
+  .signals-actions,
+  .toolbox_hint,
+  .form-header,
+  table,
+  img {
+    box-shadow: none !important;
+    filter: none !important;
   }
 
   a {
     color: #000;
     text-decoration: underline;
+    text-decoration-thickness: 1px;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
   }
 
   a[href^="http"]::after {
     content: " [" attr(href) "]";
-    font-size: 7pt;
-    color: #666;
+    font-size: 8pt;
+    color: #555;
     word-break: break-all;
+    font-family: monospace;
+    text-decoration: none;
   }
 
   a[href^="#"]::after {
     content: none;
   }
 
+  .tool-link-external::after {
+    content: none !important;
+  }
+
+  .tool-link-external {
+    display: inline !important;
+    padding: 0 !important;
+    border: 0 !important;
+    outline: 0 !important;
+    background: transparent !important;
+  }
+
   ul, ol {
-    page-break-inside: avoid;
+    page-break-inside: auto;
+    break-inside: auto;
   }
 
   img {
     max-width: 100%;
     page-break-inside: avoid;
+    border: 1px solid #e0e0e0;
+    border-radius: 0;
+  }
+
+  // --- Toolbox hint: keep readable in print ---
+  .toolbox_hint {
+    display: block;
+    background: #f2f2f2 !important;
+    border: 1px solid #777;
+    border-left: 3px solid #000;
+    padding: 0.35cm 0.5cm;
+    margin: 0.4cm 0;
+    color: #000;
+    text-decoration: none;
+    page-break-inside: avoid;
+    break-inside: avoid;
+
+    strong { font-weight: 600; }
+    &::before,
+    &::after { display: none !important; }
+    a::after { content: none !important; }
   }
 
   // --- Keep outil sections visually distinct ---
   h2[id^="outil-"] {
-    background: #e8e8e8 !important;
-    padding: 0.3cm 0.5cm;
-    border: 1pt solid #999;
-    border-bottom: 2pt solid #333;
-    margin-left: 0;
-    margin-right: 0;
-    border-radius: 0;
+    background: transparent !important;
+    padding: 0.5cm 0 0.3cm 0;
+    border: none;
+    border-bottom: 2px solid #000;
+    margin: 1cm 0 0.35cm;
+    overflow: visible !important;
+  }
+
+  .good-practices-title,
+  .toolbox_hint {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .good-practices-title {
+    page-break-after: avoid;
+    break-after: avoid;
   }
 }

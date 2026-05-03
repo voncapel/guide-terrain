@@ -1,10 +1,42 @@
 ---
 layout: default
 ---
+{% if page.url contains 'outils' %}
+  {% assign current_section = 'outils' %}
+{% else %}
+  {% assign current_section = 'guide' %}
+{% endif %}
 <div class="guide-layout">
   {% include sidebar.html %}
   <main class="guide-content" id="guide-content">
+    <div class="content-header-image" aria-hidden="true">
+      {% if current_section == 'outils' %}
+        <img src="{{ '/assets/images/tools.webp' | relative_url }}" alt="">
+      {% else %}
+        <img src="{{ '/assets/images/guide.webp' | relative_url }}" alt="">
+      {% endif %}
+    </div>
     {% include export-buttons.html %}
+    <section class="print-cover" aria-hidden="true">
+      <h1>{{ page.print_title | default: page.title }}</h1>
+    </section>
+    <nav class="print-toc" aria-hidden="true">
+      <div class="print-toc-title">Sommaire</div>
+      <ol class="print-toc-list">
+        {% for item in site.data.navigation %}{% if item.section == current_section %}
+        <li class="print-toc-item">
+          <a href="#{{ item.id }}">{{ item.title }}</a>
+          {% if item.children %}
+          <ol class="print-toc-sublist">
+            {% for child in item.children %}
+            <li class="print-toc-subitem"><a href="#{{ child.id }}">{{ child.title }}</a></li>
+            {% endfor %}
+          </ol>
+          {% endif %}
+        </li>
+        {% endif %}{% endfor %}
+      </ol>
+    </nav>
     {{ content }}
   </main>
 </div>

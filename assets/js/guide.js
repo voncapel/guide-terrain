@@ -42,6 +42,18 @@
   // --- Tab Handling ---
   const tabLinks = document.querySelectorAll('.tab-link');
 
+  function serializeNodeText(node) {
+    if (node.nodeType === Node.TEXT_NODE) return node.textContent;
+    if (node.nodeType !== Node.ELEMENT_NODE) return '';
+
+    if (node.classList.contains('form-fill')) {
+      const length = parseInt(node.style.getPropertyValue('--fill-ch'), 10) || 24;
+      return ' ' + '_'.repeat(Math.max(12, Math.min(length, 72))) + ' ';
+    }
+
+    return Array.from(node.childNodes).map(serializeNodeText).join('');
+  }
+
   function initTabs() {
     const path = window.location.pathname;
     const isOutils = path.includes('/outils/');
@@ -56,12 +68,21 @@
 
   initTabs();
 
+  function setActiveTab(tab) {
+    document.body.setAttribute('data-active-tab', tab);
+
+    tabLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('data-tab') === tab);
+    });
+  }
+
   // --- Mobile Menu ---
   const menuToggle = document.querySelector('.menu-toggle');
   const sidebar = document.getElementById('sidebar');
   const overlay = document.querySelector('.sidebar-overlay');
 
   function toggleMenu() {
+    if (!sidebar || !menuToggle || !overlay) return;
     const isOpen = sidebar.classList.toggle('is-open');
     overlay.classList.toggle('is-visible', isOpen);
     menuToggle.setAttribute('aria-expanded', isOpen);
@@ -77,7 +98,13 @@
   // Close menu on link click
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
-      if (sidebar.classList.contains('is-open')) toggleMenu();
+      if (sidebar && sidebar.classList.contains('is-open')) toggleMenu();
+    });
+  });
+
+  document.querySelectorAll('.sidebar-tab-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (sidebar && sidebar.classList.contains('is-open')) toggleMenu();
     });
   });
 
@@ -139,7 +166,7 @@
         const separator = '─'.repeat(80);
         const writeLine = () => '___________________________________________________________________________';
 
-        content.querySelectorAll('h1, h2, h3, h4, p, table, ul, ol, blockquote').forEach(el => {
+        content.querySelectorAll('h1, h2, h3, h4, p, table, ul, ol, blockquote, div.form-lines').forEach(el => {
           // Skip export bar
           if (el.closest('.export-bar')) return;
 
@@ -221,10 +248,15 @@
             lines.push('');
             lines.push('  ┃ ' + el.textContent.trim());
             lines.push('');
+          } else if (tag === 'div' && el.classList.contains('form-lines')) {
+            const lineCount = parseInt(el.style.getPropertyValue('--form-lines'), 10) || 1;
+            for (let i = 0; i < lineCount; i++) {
+              lines.push(writeLine());
+              lines.push('');
+            }
           } else if (tag === 'p') {
-            const text = el.textContent.trim();
+            const text = serializeNodeText(el).replace(/\s+/g, ' ').trim();
             if (!text) return;
-            // Detect form lines (underscores)
             if (text.match(/^_{10,}$/)) {
               lines.push(writeLine());
               lines.push('');

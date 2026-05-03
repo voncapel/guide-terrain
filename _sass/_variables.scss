@@ -1,12 +1,12 @@
 // Transitions
-$theme-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+$theme-transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
 // Layout & Spacing
-$sidebar-width: 280px;
-$content-max: 760px;
+$sidebar-width: 320px;
+$content-max: 800px;
 $breakpoint-sm: 640px;
 $breakpoint-md: 840px;
-$breakpoint-lg: 1120px;
+$breakpoint-lg: 1240px;
 
 $space-xs: 0.25rem;
 $space-sm: 0.5rem;
@@ -16,73 +16,91 @@ $space-xl: 2.5rem;
 $space-2xl: 4rem;
 
 // Fonts
-$font-body: 'PT Sans', system-ui, -apple-system, sans-serif;
-$font-heading: 'Domine', serif;
+$font-body: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$font-heading: 'Playfair Display', Georgia, serif;
 
 :root {
-  // Light Theme (Earth palette)
-  --bg-primary: #FAF7F2;
-  --bg-secondary: #F5EDE3;
-  --bg-tertiary: #EDE5DA;
-  --text-primary: #2C2420;
-  --text-secondary: #5A4D45;
-  --text-muted: #8E7C71;
-  --heading: #3B2F2A;
+  // Light Theme (Subtle warm / earth / travel)
+  --bg-primary: #fdfbf8; // Off-white linen
+  --bg-secondary: #f5f2eb; // Light sand
+  --bg-tertiary: #eeeadd;
+  --panel-bg: rgba(253, 251, 248, 0.85);
+  --panel-strong: #f5f2eb;
+  --text-primary: #332f2c; // Very dark warm gray
+  --text-secondary: #665e58;
+  --text-muted: #948b82;
+  --heading: #1f1b18;
+
+  --accent: #9a654c; // Muted terracotta / warm earth
+  --accent-light: #e6dcd3;
+  --accent-hover: #7a4f3b;
+
+  // Semantic / Extra colors for specific needs
+  --ochre: #b08d4b;
+  --sage: #798572;
+  --sage-light: #eff1ec;
+  --clay: #a69f98;
+  --clay-light: #f5f3f0;
+
+  --red: #a84f4b;
+  --red-light: #f7e6e5;
+
+  --border-color: #e6e0d3;
+  --border-strong: #d4ccbd;
+  --shadow-color: rgba(60, 50, 40, 0.04);
+  --shadow-strong: rgba(60, 50, 40, 0.08);
   
-  --accent: #C05746;       // terracotta
-  --accent-light: #E8D5CF;
-  --accent-hover: #A04738;
-  
-  --ochre: #B8860B;
-  --sage: #7A8B6F;
-  --sage-light: #E8EDE4;
-  --clay: #D4C4B0;
-  --clay-light: #EDE5DA;
-  
-  --red: #A63D40;          // ligne rouge
-  --red-light: #F2E0E0;
-  
-  --border-color: #D4C4B0;
-  --shadow-color: rgba(44, 36, 32, 0.05);
-  --header-bg: rgba(250, 247, 242, 0.95);
-  --sidebar-bg: #FAF7F2;
-  
-  --nav-link-hover: #C05746;
-  --nav-link-active: #C05746;
+  --header-bg: rgba(253, 251, 248, 0.95);
+  --sidebar-bg: rgba(250, 248, 244, 0.95);
+  --glow-accent: rgba(154, 101, 76, 0.03);
+  --glow-sage: rgba(121, 133, 114, 0.03);
+  --grid-color: rgba(60, 50, 40, 0.03);
+
+  --nav-link-hover: #9a654c;
+  --nav-link-active: #9a654c;
 }
 
 [data-theme="dark"] {
-  --bg-primary: #1A1614;
-  --bg-secondary: #251F1C;
-  --bg-tertiary: #2F2825;
-  --text-primary: #E6DFD9;
-  --text-secondary: #BDAFA5;
-  --text-muted: #8E7C71;
-  --heading: #F5EDE3;
+  // Dark Theme (Warm dark gray / subtly earthy)
+  --bg-primary: #1c1a18;
+  --bg-secondary: #262320;
+  --bg-tertiary: #302c29;
+  --panel-bg: rgba(28, 26, 24, 0.85);
+  --panel-strong: #262320;
+  --text-primary: #e8e3dc;
+  --text-secondary: #b5aca0;
+  --text-muted: #8c847a;
+  --heading: #fcfaf8;
+
+  --accent: #cf9b82; // Light muted terracotta for dark mode
+  --accent-light: #3d322c;
+  --accent-hover: #e8c2b0;
+
+  --ochre: #c4a15e;
+  --sage: #95a38d;
+  --sage-light: #2c3328;
+  --clay: #8a837c;
+  --clay-light: #2b2927;
+
+  --red: #c96b66;
+  --red-light: #3d2322;
+
+  --border-color: #3b3631;
+  --border-strong: #544e47;
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --shadow-strong: rgba(0, 0, 0, 0.6);
   
-  --accent: #D67464;
-  --accent-light: #4A342E;
-  --accent-hover: #E88B7D;
-  
-  --ochre: #DAA520;
-  --sage: #9AB08F;
-  --sage-light: #2D3429;
-  --clay: #4A3F3A;
-  --clay-light: #2F2825;
-  
-  --red: #E05D61;
-  --red-light: #4A282A;
-  
-  --border-color: #3B2F2A;
-  --shadow-color: rgba(0, 0, 0, 0.3);
-  --header-bg: rgba(26, 22, 20, 0.95);
-  --sidebar-bg: #1A1614;
-  
-  --nav-link-hover: #D67464;
-  --nav-link-active: #D67464;
+  --header-bg: rgba(28, 26, 24, 0.95);
+  --sidebar-bg: rgba(32, 29, 27, 0.95);
+  --glow-accent: rgba(207, 155, 130, 0.03);
+  --glow-sage: rgba(149, 163, 141, 0.03);
+  --grid-color: rgba(255, 255, 255, 0.03);
+
+  --nav-link-hover: #cf9b82;
+  --nav-link-active: #cf9b82;
 }
 
-// Keep some SCSS variables for legacy/convenience if needed, but pointed to CSS vars
+// Backward compatibility bindings
 $bg: var(--bg-primary);
 $bg-warm: var(--bg-secondary);
 $text: var(--text-primary);

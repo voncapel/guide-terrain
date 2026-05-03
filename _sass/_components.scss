@@ -1,12 +1,16 @@
 // Blockquotes / Callouts
 blockquote {
-  background: var(--bg-secondary);
-  border-left: 4px solid var(--sage);
+  position: relative;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--panel-bg) 100%);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent);
   padding: $space-md $space-lg;
   margin: $space-lg 0;
-  border-radius: 0 8px 8px 0;
+  border-radius: 6px;
   font-style: italic;
-  color: var(--text-secondary);
+  font-family: $font-heading;
+  color: var(--heading);
+  box-shadow: 0 4px 12px var(--shadow-color);
   transition: $theme-transition;
 
   p:last-child {
@@ -17,11 +21,12 @@ blockquote {
 // Exergue / important callout
 .callout-important,
 blockquote blockquote {
-  background: var(--red-light);
-  border-left-color: var(--red);
+  background: linear-gradient(135deg, var(--sage-light) 0%, var(--panel-bg) 100%);
+  border-left-color: var(--sage);
   font-style: normal;
-  font-weight: 400;
+  font-family: $font-body;
   color: var(--text-primary);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 // Tables
@@ -30,7 +35,8 @@ blockquote blockquote {
   margin: $space-lg 0;
   border-radius: 8px;
   border: 1px solid var(--border-color);
-  background: var(--bg-primary);
+  background: var(--panel-bg);
+  box-shadow: 0 4px 12px var(--shadow-color);
   transition: $theme-transition;
 }
 
@@ -42,17 +48,19 @@ table {
 }
 
 thead {
-  background: var(--bg-tertiary);
-  border-bottom: 2px solid var(--border-color);
+  background: var(--bg-secondary);
+  border-bottom: 2px solid var(--border-strong);
 }
 
 th {
-  font-family: $font-heading;
-  font-weight: 700;
+  font-family: $font-body;
+  font-weight: 600;
   text-align: left;
   padding: $space-md;
   color: var(--heading);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 td {
@@ -67,11 +75,11 @@ tbody tr:last-child td {
 }
 
 tbody tr:nth-child(even) {
-  background: var(--bg-secondary);
+  background: rgba(0, 0, 0, 0.01);
 }
 
 tbody tr:hover {
-  background: var(--bg-tertiary);
+  background: var(--bg-secondary);
 }
 
 // Lists
@@ -93,28 +101,34 @@ li {
 li input[type="checkbox"] {
   appearance: none;
   -webkit-appearance: none;
-  width: 18px;
-  height: 18px;
-  border: 2px solid var(--sage);
-  border-radius: 4px;
+  inline-size: 16px;
+  block-size: 16px;
+  min-inline-size: 16px;
+  min-block-size: 16px;
+  flex: 0 0 16px;
+  aspect-ratio: 1 / 1;
+  align-self: flex-start;
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
   vertical-align: middle;
   margin-right: $space-sm;
+  margin-top: 0.2rem;
   position: relative;
   cursor: pointer;
   background: var(--bg-primary);
   transition: $theme-transition;
 
   &:checked {
-    background: var(--sage);
-    border-color: var(--sage);
+    background: var(--accent);
+    border-color: var(--accent);
 
     &::after {
       content: '';
       position: absolute;
       left: 4px;
-      top: 1px;
-      width: 6px;
-      height: 10px;
+      top: 2px;
+      width: 4px;
+      height: 8px;
       border: solid white;
       border-width: 0 2px 2px 0;
       transform: rotate(45deg);
@@ -126,7 +140,7 @@ li input[type="checkbox"] {
   }
 }
 
-// Task lists (kramdown)
+// Task lists
 ul.task-list {
   list-style: none;
   margin-left: 0;
@@ -141,16 +155,31 @@ ul.task-list {
 
 // Export buttons
 .export-bar {
+  position: sticky;
+  top: 104px;
+  z-index: 30;
+  float: right;
+  clear: right;
   display: flex;
+  width: fit-content;
   gap: $space-sm;
-  justify-content: flex-end;
-  margin-bottom: $space-xl;
-  padding-bottom: $space-md;
-  border-bottom: 1px solid var(--border-color);
-  
+  padding: 0.5rem;
+  margin-top: calc(-14rem + #{$space-lg});
+  margin-bottom: $space-md;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background: var(--panel-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+
   @media (max-width: $breakpoint-md) {
-    justify-content: center;
+    position: static;
+    float: none;
+    margin-top: 0;
     margin-bottom: $space-lg;
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -158,27 +187,21 @@ ul.task-list {
   display: inline-flex;
   align-items: center;
   gap: $space-xs;
-  padding: 8px 16px;
+  padding: 0.6rem 1rem;
   font-family: $font-body;
   font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-secondary);
-  background: var(--bg-secondary);
+  font-weight: 500;
+  color: var(--text-primary);
+  background: transparent;
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 4px;
   cursor: pointer;
   transition: $theme-transition;
 
   &:hover {
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
-    border-color: var(--text-muted);
-    transform: translateY(-1px);
-    box-shadow: 0 2px 4px var(--shadow-color);
-  }
-  
-  &:active {
-    transform: translateY(0);
+    background: var(--bg-secondary);
+    border-color: var(--border-strong);
+    color: var(--heading);
   }
 
   svg {
@@ -187,43 +210,35 @@ ul.task-list {
   }
 }
 
-// Section markers (visual rhythm)
-h2 + blockquote {
-  margin-top: $space-sm;
-  background: var(--accent-light);
-  border-left-color: var(--accent);
-  color: var(--text-primary);
-}
-
 // "Outil" sections visual distinction
 h2[id^="outil-"] {
   background: var(--bg-secondary);
-  padding: $space-md $space-lg;
-  margin-left: -$space-lg;
-  margin-right: -$space-lg;
-  border-bottom: 3px solid var(--accent);
-  border-radius: 8px 8px 0 0;
+  padding: $space-lg $space-xl $space-md;
+  margin-left: -$space-xl;
+  margin-right: -$space-xl;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent);
+  box-shadow: none;
+  font-size: 1.6rem;
+  font-weight: 600;
   transition: $theme-transition;
+
+  &::before {
+    display: none;
+  }
 
   @media (max-width: $breakpoint-md) {
     margin-left: -$space-md;
     margin-right: -$space-md;
-    padding: $space-md;
-    border-radius: 0;
-    font-size: 1.2rem;
-  }
-
-  @media (max-width: $breakpoint-sm) {
-    margin-left: -$space-sm;
-    margin-right: -$space-sm;
-    padding: $space-sm $space-md;
-    font-size: 1.05rem;
+    padding: $space-md $space-md $space-sm;
+    font-size: 1.4rem;
   }
 }
 
 // --- Form elements for Outils (printable/exportable) ---
 
-// Form header: Nom / Date fields
+// Form header
 .form-header {
   margin: $space-lg 0;
   padding: $space-md $space-lg;
@@ -231,31 +246,132 @@ h2[id^="outil-"] {
   border: 1px solid var(--border-color);
   border-radius: 6px;
   font-size: 1rem;
-  line-height: 2.2;
+  line-height: 1.8;
   transition: $theme-transition;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.7rem 1.2rem;
+}
+
+.form-field-inline {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 0.35rem;
+  white-space: nowrap;
+}
+
+.page-outils .form-header .form-field-inline {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: end;
+  flex: 1 1 12rem;
+  min-width: 0;
+  white-space: normal;
+}
+
+.page-outils .form-header .form-field-inline .form-fill {
+  width: auto;
+  min-width: 0;
+  margin-right: 0;
 }
 
 // Form section titles
 .form-section-title {
   color: var(--heading);
-  font-size: 1.05rem;
-  margin-top: $space-lg;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: $space-md;
   margin-bottom: $space-sm;
-  border-bottom: 1px dashed var(--border-color);
+  border-bottom: 1px solid var(--border-strong);
   padding-bottom: $space-xs;
 }
 
-// Form lines (writable underscores)
-.form-line {
-  margin: $space-xs 0;
-  line-height: 2;
-  color: var(--text-muted);
-  letter-spacing: -0.5px;
+// Form fills generated from underscore placeholders
+.form-fill {
+  --fill-ch: 24;
+  --form-line-color: var(--border-strong);
+  display: inline-block;
+  width: min(100%, max(7rem, calc(var(--fill-ch) * 0.56ch)));
+  min-width: 7rem;
+  height: 1.1em;
+  margin: 0 0.25rem;
+  vertical-align: -0.15em;
+  border-bottom: 1px solid var(--form-line-color);
 }
 
-// Form question (bold label + italic examples)
+// Form lines
+.form-line {
+  margin: $space-xs 0;
+  line-height: 1.8;
+}
+
+.page-outils .form-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.4rem;
+}
+
+.page-outils .form-line .form-fill,
+.page-outils .form-line .form-fill--stretch {
+  width: auto;
+  min-width: 10rem;
+  max-width: none;
+  flex: 1 1 14rem;
+  margin: 0;
+}
+
+.page-outils .form-lines-below .form-line {
+  display: block;
+  margin: $space-sm 0;
+}
+
+.page-outils .form-lines-below .form-line .form-fill,
+.page-outils .form-lines-below .form-line .form-fill--stretch {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 1.25rem;
+  margin-top: 0.15rem;
+}
+
+.form-lines {
+  --form-lines: 2;
+  --form-line-gap: 1.75rem;
+  --form-line-color: var(--border-strong);
+  width: 100%;
+  min-height: calc(var(--form-lines) * var(--form-line-gap));
+  margin: $space-xs 0 $space-sm;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(var(--form-line-gap) - 1px),
+    var(--form-line-color) calc(var(--form-line-gap) - 1px),
+    var(--form-line-color) var(--form-line-gap)
+  );
+  background-repeat: repeat-y;
+  break-inside: avoid;
+}
+
+.page-outils .tool-2-compact .form-section-title {
+  margin-top: $space-sm;
+  margin-bottom: $space-xs;
+}
+
+.page-outils .tool-2-compact .form-lines {
+  --form-line-gap: 1.45rem;
+  margin: 0.15rem 0 0.45rem;
+}
+
+.page-outils .tool-2-compact p,
+.page-outils .tool-2-compact .form-line {
+  margin-bottom: $space-xs;
+}
+
+// Form question
 .form-question {
-  margin-top: $space-md;
+  margin-top: $space-sm;
   margin-bottom: $space-xs;
   line-height: 1.6;
 
@@ -277,82 +393,185 @@ h2[id^="outil-"] {
   font-style: italic;
 }
 
-// --- Mobile responsive: components ---
-@media (max-width: $breakpoint-md) {
-  table {
-    font-size: 0.85rem;
+// --- Signaux d'alerte : layout editorialisé ---
+.signals-disclaimer,
+.signals-actions {
+  margin: $space-lg 0;
+  padding: $space-md $space-lg;
+  border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent);
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.signals-actions {
+  border-left-color: var(--red);
+  background: var(--red-light);
+}
+
+.signals-tool {
+  margin: $space-lg 0 $space-xl;
+}
+
+.signals-stage {
+  --stage-accent: var(--accent);
+  position: relative;
+  margin: $space-lg 0;
+  padding: $space-lg;
+  border: 1px solid var(--border-color);
+  border-top: 3px solid var(--stage-accent);
+  border-radius: 6px;
+  background: var(--panel-bg);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.signals-stage--1 { --stage-accent: var(--sage); }
+.signals-stage--2 { --stage-accent: var(--ochre); }
+.signals-stage--3 { --stage-accent: var(--red); }
+
+.signals-stage-title {
+  margin: 0 0 $space-sm;
+  color: var(--heading);
+  font-family: $font-heading;
+  font-size: 1.3rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.signals-stage--3 .signals-stage-title {
+  color: var(--red);
+}
+
+.signals-stage-title span {
+  display: block;
+  color: var(--text-muted);
+  font-family: $font-body;
+  font-size: 0.9rem;
+  font-weight: 400;
+  margin-top: 0.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.signals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: $space-md;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  background: var(--panel-strong);
+}
+
+.signals-card {
+  display: flex;
+  flex-direction: column;
+  padding: $space-md;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 100%;
+}
+
+.signals-card:nth-child(2n) {
+  border-right: none;
+}
+
+.signals-card:nth-last-child(-n + 2) {
+  border-bottom: none;
+}
+
+.signals-card-title {
+  margin: 0 0 $space-sm;
+  color: var(--heading);
+  font-family: $font-body;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.signals-list {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.signals-list li {
+  margin-bottom: $space-xs;
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+// Toolbox hint
+.toolbox_hint {
+  display: block;
+  position: relative;
+  margin: $space-xl 0;
+  padding: $space-lg $space-xl $space-lg calc(#{$space-xl} + 2.5rem);
+  background: linear-gradient(135deg, var(--clay-light) 0%, var(--panel-bg) 100%);
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--ochre);
+  border-radius: 6px;
+  color: var(--text-primary);
+  text-decoration: none;
+  border-bottom: none;
+  box-shadow: 0 4px 16px var(--shadow-color);
+  transition: $theme-transition;
+  overflow: hidden;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: $space-lg;
+    left: $space-lg;
+    width: 1.8rem;
+    height: 1.8rem;
+    background-color: var(--ochre);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E") no-repeat center / contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -1rem;
+    right: -1rem;
+    width: 6rem;
+    height: 6rem;
+    background-color: var(--ochre);
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E") no-repeat center / contain;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z'/%3E%3C/svg%3E") no-repeat center / contain;
+    opacity: 0.05;
+    transform: rotate(-15deg);
+    pointer-events: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+  }
+
+  strong {
     display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    font-family: $font-heading;
+    font-weight: 600;
+    color: var(--ochre);
+    margin-bottom: $space-xs;
+    font-size: 1.15rem;
   }
 
-  th, td {
-    padding: $space-sm;
-    min-width: 100px;
+  p {
+    margin: 0;
+    color: var(--text-primary);
   }
 
-  .export-bar {
-    margin-bottom: $space-md;
-    padding-bottom: $space-sm;
-  }
+  &[href]:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--shadow-strong);
+    border-color: var(--ochre);
+    border-bottom: none;
 
-  .form-header {
-    padding: $space-sm $space-md;
-    font-size: 0.9rem;
-    line-height: 2;
-    word-break: break-word;
-  }
-
-  .form-question {
-    font-size: 0.95rem;
-
-    em {
-      font-size: 0.8rem;
-      display: block;
-      margin-top: 2px;
+    &::after {
+      transform: rotate(0deg) scale(1.1);
+      opacity: 0.08;
     }
   }
-
-  .form-line {
-    font-size: 0.85rem;
-    overflow-x: auto;
-    word-break: break-all;
-  }
-
-  blockquote {
-    padding: $space-sm $space-md;
-    margin: $space-md 0;
-  }
-
-  ul, ol {
-    margin-left: $space-md;
-    padding-left: $space-sm;
-  }
 }
 
-@media (max-width: $breakpoint-sm) {
-  .export-btn {
-    padding: 6px 10px;
-    font-size: 0.8rem;
-  }
-
-  .form-header {
-    padding: $space-sm;
-    font-size: 0.85rem;
-  }
-
-  .form-section-title {
-    font-size: 0.95rem;
-  }
-
-  li input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-  }
-}
-
-// Red-lined text for "Ligne rouge"
-.red-line {
-  color: var(--red);
-  font-weight: 700;
+.good-practices-title {
+  break-after: avoid;
+  page-break-after: avoid;
 }

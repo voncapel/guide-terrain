@@ -12,9 +12,9 @@
   children:
     - title: Positionnalité et rapports de pouvoir
       id: positionnalite-et-rapports-de-pouvoir
-    - title: "Risques, vulnérabilités & émotions"
+    - title: "Risques, vulnérabilités et émotions"
       id: risques-vulnerabilites-emotions
-    - title: "Pratiques d'enquête, adaptations & éthique"
+    - title: "Pratiques d'enquête, adaptations et éthique"
       id: pratiques-enquete-adaptations-ethique
 
 - title: Avant de partir
@@ -74,4 +74,8 @@
 
 - title: Pour aller plus loin
   id: pour-aller-plus-loin
+  section: guide
+
+- title: Qui sommes-nous ?
+  id: qui-sommes-nous
   section: guide

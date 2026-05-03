@@ -21,6 +21,9 @@ exclude:
   - _content
   - README.md
   - vendor
+  - upload_to_ftp.sh
+  - .gitignore
+  - .git
 
 plugins:
   - jekyll-seo-tag

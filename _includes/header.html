@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="header-inner">
     <div class="header-title">
-      <a href="{{ '/' | relative_url }}" style="text-decoration: none;">
+      <a href="{{ '/' | relative_url }}" class="header-home-link">
         <h1 class="site-title">{{ site.title }}</h1>
         <p class="site-subtitle">{{ site.description }}</p>
       </a>
@@ -19,7 +19,7 @@
       </button>
     </nav>
 
-    <div class="mobile-actions" style="display: flex; gap: 8px; align-items: center;">
+    <div class="mobile-actions">
       <button class="theme-toggle-text mobile-only" id="theme-toggle-mobile" aria-label="Changer le thème">
         <span class="theme-text-light">Sombre</span>
         <span class="theme-text-dark" style="display: none;">Clair</span>
