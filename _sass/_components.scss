@@ -461,6 +461,10 @@ h2[id^="outil-"] {
   border: 1px solid var(--border-color);
   border-radius: 4px;
   background: var(--panel-strong);
+
+  @media (max-width: $breakpoint-sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .signals-card {
@@ -478,6 +482,20 @@ h2[id^="outil-"] {
 
 .signals-card:nth-last-child(-n + 2) {
   border-bottom: none;
+}
+
+@media (max-width: $breakpoint-sm) {
+  .signals-card {
+    border-right: none;
+  }
+
+  .signals-card:nth-last-child(-n + 2) {
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .signals-card:last-child {
+    border-bottom: none;
+  }
 }
 
 .signals-card-title {
