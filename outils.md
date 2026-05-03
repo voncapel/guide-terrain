@@ -632,4 +632,4 @@ Vérifier que les photos, messages et contenus accessibles sont conformes aux l�
 
 <p class="signals-actions">Si plusieurs symptômes apparaissent simultanément pendant plus de 72h, si un incident continue d’envahir quotidiennement les pensées, si vous vous sentez incapable de décider seule de la suite du terrain : contactez votre personne référente, un professionnel de santé, parlez à une collègue de confiance, notez brièvement ce qui s’est passé, retirez-vous temporairement si besoin : écoutez-vous.</p>
 
-<p class="form-header"><strong>Personne référente :</strong> {% include form-fill.html ch=37 %} <strong>Téléphone :</strong> {% include form-fill.html ch=27 %}</p>
+<p class="form-header"><span class="form-field-inline"><strong>Personne référente :</strong> {% include form-fill.html ch=37 %}</span> <span class="form-field-inline"><strong>Téléphone :</strong> {% include form-fill.html ch=27 %}</span></p>
