@@ -1,30 +1,50 @@
+{% assign page_lang = page.lang | default: site.lang | default: 'fr' %}
+{% assign locale = site.languages[page_lang] %}
+{% if page_lang == 'en' %}
+  {% assign guide_url = '/en/' %}
+  {% assign tools_url = '/en/outils/' %}
+{% else %}
+  {% assign guide_url = '/' %}
+  {% assign tools_url = '/outils/' %}
+{% endif %}
 <header class="site-header">
   <div class="header-inner">
     <div class="header-title">
-      <a href="{{ '/' | relative_url }}" class="header-home-link">
-        <h1 class="site-title">{{ site.title }}</h1>
-        <p class="site-subtitle">{{ site.description }}</p>
+      <a href="{{ guide_url | relative_url }}" class="header-home-link">
+        <h1 class="site-title">{{ locale.title | default: site.title }}</h1>
+        <p class="site-subtitle">{{ locale.description | default: site.description }}</p>
       </a>
     </div>
 
     <nav class="header-nav">
       <div class="tab-nav" role="tablist">
-        <a href="{{ '/' | relative_url }}" class="tab-link {% if page.url == '/' %}active{% endif %}" data-tab="guide">Le Guide</a>
-        <a href="{{ '/outils/' | relative_url }}" class="tab-link {% if page.url contains '/outils/' %}active{% endif %}" data-tab="outils">Les Outils</a>
+        <a href="{{ guide_url | relative_url }}" class="tab-link {% if page.url == guide_url %}active{% endif %}" data-tab="guide">{{ locale.guide_label }}</a>
+        <a href="{{ tools_url | relative_url }}" class="tab-link {% if page.url contains tools_url %}active{% endif %}" data-tab="outils">{{ locale.tools_label }}</a>
       </div>
-      
-      <button class="theme-toggle-text" id="theme-toggle" aria-label="Changer le thème">
-        <span class="theme-text-light">Thème sombre</span>
-        <span class="theme-text-dark" style="display: none;">Thème clair</span>
+
+      {% if page.alternate_url %}
+      <a class="language-switch" href="{{ page.alternate_url | relative_url }}" hreflang="{{ page.alternate_lang }}" aria-label="{{ site.languages[page.alternate_lang].label }}">
+        {{ site.languages[page.alternate_lang].short_label }}
+      </a>
+      {% endif %}
+
+      <button class="theme-toggle-text" id="theme-toggle" aria-label="{{ locale.theme_toggle_label }}">
+        <span class="theme-text-light">{{ locale.dark_theme_label }}</span>
+        <span class="theme-text-dark" style="display: none;">{{ locale.light_theme_label }}</span>
       </button>
     </nav>
 
     <div class="mobile-actions">
-      <button class="theme-toggle-text mobile-only" id="theme-toggle-mobile" aria-label="Changer le thème">
-        <span class="theme-text-light">Sombre</span>
-        <span class="theme-text-dark" style="display: none;">Clair</span>
+      {% if page.alternate_url %}
+      <a class="language-switch language-switch--mobile" href="{{ page.alternate_url | relative_url }}" hreflang="{{ page.alternate_lang }}" aria-label="{{ site.languages[page.alternate_lang].label }}">
+        {{ site.languages[page.alternate_lang].short_label }}
+      </a>
+      {% endif %}
+      <button class="theme-toggle-text mobile-only" id="theme-toggle-mobile" aria-label="{{ locale.theme_toggle_label }}">
+        <span class="theme-text-light">{{ locale.dark_theme_mobile_label }}</span>
+        <span class="theme-text-dark" style="display: none;">{{ locale.light_theme_mobile_label }}</span>
       </button>
-      <button class="menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false">
+      <button class="menu-toggle" aria-label="{{ locale.menu_open_label }}" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>

@@ -114,6 +114,7 @@
   line-height: 1.4;
   color: var(--text-secondary);
   text-decoration: none;
+  border-bottom: none;
   border-radius: 4px;
   transition: $theme-transition;
   border-left: none;
@@ -121,11 +122,13 @@
   &:hover {
     color: var(--heading);
     background: rgba(0, 0, 0, 0.02);
+    border-bottom: none;
   }
 
   &.active {
     color: var(--heading);
     background: transparent;
+    border-bottom: none;
     font-weight: 600;
   }
 }

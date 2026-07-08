@@ -1,7 +1,10 @@
 ---
 layout: guide
+lang: fr
 title: "Le Guide — Femmes et terrains"
 print_title: "Femmes et terrains : vers la création d'outils méthodologiques"
+alternate_lang: en
+alternate_url: /en/
 ---
 
 # Femmes et terrains : vers la création d'outils méthodologiques

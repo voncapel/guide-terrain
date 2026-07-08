@@ -93,7 +93,8 @@
   }
 }
 
-.theme-toggle-text {
+.theme-toggle-text,
+.language-switch {
   background: transparent;
   border: 1px solid var(--border-color);
   color: var(--text-secondary);
@@ -103,15 +104,25 @@
   font-weight: 500;
   cursor: pointer;
   transition: $theme-transition;
+}
 
-  &:hover {
-    background: var(--bg-secondary);
-    color: var(--heading);
-  }
+.theme-toggle-text:hover,
+.language-switch:hover {
+  background: var(--bg-secondary);
+  color: var(--heading);
+}
 
-  &.mobile-only {
-    display: none;
-  }
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  text-decoration: none;
+  border-bottom: none;
+}
+
+.theme-toggle-text.mobile-only {
+  display: none;
 }
 
 .menu-toggle {

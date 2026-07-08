@@ -1,6 +1,10 @@
 ---
 layout: default
 ---
+{% assign page_lang = page.lang | default: site.lang | default: 'fr' %}
+{% assign locale = site.languages[page_lang] %}
+{% assign nav_key = 'navigation_' | append: page_lang %}
+{% assign localized_navigation = site.data[nav_key] | default: site.data.navigation %}
 {% if page.url contains 'outils' %}
   {% assign current_section = 'outils' %}
 {% else %}
@@ -21,9 +25,9 @@ layout: default
       <h1>{{ page.print_title | default: page.title }}</h1>
     </section>
     <nav class="print-toc" aria-hidden="true">
-      <div class="print-toc-title">Sommaire</div>
+      <div class="print-toc-title">{{ locale.summary_label }}</div>
       <ol class="print-toc-list">
-        {% for item in site.data.navigation %}{% if item.section == current_section %}
+        {% for item in localized_navigation %}{% if item.section == current_section %}
         <li class="print-toc-item">
           <a href="#{{ item.id }}">{{ item.title }}</a>
           {% if item.children %}

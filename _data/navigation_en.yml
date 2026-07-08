@@ -1,0 +1,81 @@
+- title: Foreword
+  id: foreword
+  section: guide
+
+- title: Introduction
+  id: introduction
+  section: guide
+
+- title: The Red Line and Good Practice
+  id: the-red-line-and-good-practice
+  section: guide
+  children:
+    - title: Positionality and Power Relations
+      id: positionality-and-power-relations
+    - title: "Risks, Vulnerabilities & Emotions"
+      id: risks-vulnerabilities-and-emotions
+    - title: "Research Practices, Adaptations & Ethics"
+      id: research-practices-adaptations-and-ethics
+
+- title: Before You Leave
+  id: before-you-leave
+  section: guide
+  children:
+    - title: And Your Loved Ones?
+      id: and-your-loved-ones-before
+    - title: And Your Health?
+      id: and-your-health-before
+    - title: Recommendations for Institutions
+      id: recommendations-for-institutions-before
+
+- title: In the Field
+  id: in-the-field
+  section: guide
+  children:
+    - title: And Your Loved Ones?
+      id: and-your-loved-ones-field
+    - title: And Your Health?
+      id: and-your-health-field
+    - title: Warning Signs
+      id: symptoms-of-secondary-shock
+    - title: Recommendations for Institutions
+      id: recommendations-for-institutions-field
+
+- title: On Return
+  id: on-return
+  section: guide
+  children:
+    - title: And Your Loved Ones?
+      id: and-your-loved-ones-return
+    - title: And Your Health?
+      id: and-your-health-return
+    - title: Recommendations for Institutions
+      id: recommendations-for-institutions-return
+
+- title: Non-Conclusion
+  id: non-conclusion
+  section: guide
+
+- title: "Tool 1: Position Yourself"
+  id: tool-1
+  section: outils
+
+- title: "Tool 2: Joint Assessment"
+  id: tool-2
+  section: outils
+
+- title: "Tool 3: Prepare Your Fieldwork"
+  id: tool-3
+  section: outils
+
+- title: "Tool 4: Warning Signs"
+  id: tool-4
+  section: outils
+
+- title: Further Reading
+  id: further-reading
+  section: guide
+
+- title: Who Are We?
+  id: who-are-we
+  section: guide

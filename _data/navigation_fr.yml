@@ -1,0 +1,81 @@
+- title: Avant propos
+  id: avant-propos
+  section: guide
+
+- title: Introduction
+  id: introduction
+  section: guide
+
+- title: Ligne rouge et bonnes pratiques
+  id: ligne-rouge-et-bonnes-pratiques
+  section: guide
+  children:
+    - title: Positionnalité et rapports de pouvoir
+      id: positionnalite-et-rapports-de-pouvoir
+    - title: "Risques, vulnérabilités et émotions"
+      id: risques-vulnerabilites-emotions
+    - title: "Pratiques d'enquête, adaptations et éthique"
+      id: pratiques-enquete-adaptations-ethique
+
+- title: Avant de partir
+  id: avant-de-partir
+  section: guide
+  children:
+    - title: Et tes proches ?
+      id: et-tes-proches-avant
+    - title: Et ta santé ?
+      id: et-ta-sante-avant
+    - title: Recommandations aux institutions
+      id: recommandations-institutions-avant
+
+- title: Sur le terrain
+  id: sur-le-terrain
+  section: guide
+  children:
+    - title: Et tes proches ?
+      id: et-tes-proches-terrain
+    - title: Et ta santé ?
+      id: et-ta-sante-terrain
+    - title: Signaux d'alerte
+      id: symptomes-choc-secondaire
+    - title: Recommandations aux institutions
+      id: recommandations-institutions-terrain
+
+- title: Le retour
+  id: le-retour
+  section: guide
+  children:
+    - title: Et tes proches ?
+      id: et-tes-proches-retour
+    - title: Et ta santé ?
+      id: et-ta-sante-retour
+    - title: Recommandations aux institutions
+      id: recommandations-institutions-retour
+
+- title: Non-conclusion
+  id: non-conclusion
+  section: guide
+
+- title: "Outil 1 : Se positionner"
+  id: outil-1
+  section: outils
+
+- title: "Outil 2 : Évaluation conjointe"
+  id: outil-2
+  section: outils
+
+- title: "Outil 3 : Préparer son terrain"
+  id: outil-3
+  section: outils
+
+- title: "Outil 4 : Signaux d'alertes"
+  id: outil-4
+  section: outils
+
+- title: Pour aller plus loin
+  id: pour-aller-plus-loin
+  section: guide
+
+- title: Qui sommes-nous ?
+  id: qui-sommes-nous
+  section: guide

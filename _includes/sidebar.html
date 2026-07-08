@@ -1,17 +1,28 @@
+{% assign page_lang = page.lang | default: site.lang | default: 'fr' %}
+{% assign locale = site.languages[page_lang] %}
+{% assign nav_key = 'navigation_' | append: page_lang %}
+{% assign localized_navigation = site.data[nav_key] | default: site.data.navigation %}
+{% if page_lang == 'en' %}
+  {% assign guide_url = '/en/' %}
+  {% assign tools_url = '/en/outils/' %}
+{% else %}
+  {% assign guide_url = '/' %}
+  {% assign tools_url = '/outils/' %}
+{% endif %}
 <aside class="sidebar" id="sidebar">
-  <nav class="sidebar-nav" aria-label="Table des matières">
+  <nav class="sidebar-nav" aria-label="{{ locale.toc_label }}">
     <div class="sidebar-header">
-      <h2 class="sidebar-title">Sommaire</h2>
-      <button class="sidebar-close" aria-label="Fermer le menu">
+      <h2 class="sidebar-title">{{ locale.summary_label }}</h2>
+      <button class="sidebar-close" aria-label="{{ locale.menu_close_label }}">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
-    <div class="sidebar-mobile-tabs" role="tablist" aria-label="Navigation principale">
-      <a href="{{ '/' | relative_url }}" class="sidebar-tab-link {% if page.url == '/' %}active{% endif %}">Le guide</a>
-      <a href="{{ '/outils/' | relative_url }}" class="sidebar-tab-link {% if page.url contains '/outils/' %}active{% endif %}">Les outils</a>
+    <div class="sidebar-mobile-tabs" role="tablist" aria-label="{{ locale.toc_label }}">
+      <a href="{{ guide_url | relative_url }}" class="sidebar-tab-link {% if page.url == guide_url %}active{% endif %}">{{ locale.guide_label }}</a>
+      <a href="{{ tools_url | relative_url }}" class="sidebar-tab-link {% if page.url contains tools_url %}active{% endif %}">{{ locale.tools_label }}</a>
     </div>
     <ul class="nav-list">
-      {% for item in site.data.navigation %}
+      {% for item in localized_navigation %}
       <li class="nav-item" {% if item.section %}data-section="{{ item.section }}"{% endif %}>
         <a href="#{{ item.id }}" class="nav-link">{{ item.title }}</a>
         {% if item.children %}

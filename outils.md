@@ -1,8 +1,11 @@
 ---
 layout: guide
+lang: fr
 title: "Les Outils — Femmes et terrains"
 print_title: "Boîte à outils : se positionner, évaluer, préparer"
 permalink: /outils/
+alternate_lang: en
+alternate_url: /en/outils/
 ---
 
 # Boîte à outils : se positionner, évaluer, préparer

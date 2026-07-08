@@ -4,6 +4,40 @@ lang: fr
 url: ""
 baseurl: ""
 
+languages:
+  fr:
+    label: "Français"
+    short_label: "FR"
+    title: "Femmes et terrains"
+    description: "Vers la création d'outils méthodologiques"
+    guide_label: "Le Guide"
+    tools_label: "Les Outils"
+    summary_label: "Sommaire"
+    dark_theme_label: "Thème sombre"
+    light_theme_label: "Thème clair"
+    dark_theme_mobile_label: "Sombre"
+    light_theme_mobile_label: "Clair"
+    theme_toggle_label: "Changer le thème"
+    menu_open_label: "Ouvrir le menu"
+    menu_close_label: "Fermer le menu"
+    toc_label: "Table des matières"
+  en:
+    label: "English"
+    short_label: "EN"
+    title: "Women and Fieldwork"
+    description: "Towards the Creation of Methodological Tools"
+    guide_label: "The Guide"
+    tools_label: "Tools"
+    summary_label: "Contents"
+    dark_theme_label: "Dark theme"
+    light_theme_label: "Light theme"
+    dark_theme_mobile_label: "Dark"
+    light_theme_mobile_label: "Light"
+    theme_toggle_label: "Change theme"
+    menu_open_label: "Open menu"
+    menu_close_label: "Close menu"
+    toc_label: "Table of contents"
+
 markdown: kramdown
 kramdown:
   input: GFM
